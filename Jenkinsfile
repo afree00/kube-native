@@ -1,16 +1,16 @@
-pipeline {    
+pipeline {
 
-    agent any    
-    
+    agent any
+
     environment {
-        MSR_FQDN_PORT='<registry dynamic DNS>:4443'
+        MSR_FQDN_PORT='t84uicfzzodmqahaw-q9e6s2pksfazvat3j.labs.strigo.io:4443'
     }
 
     stages {
         stage('Build') {
             environment {
                 MSR_ACCESS_KEY = credentials('jenkins-msr-access-token')
-		MAJORMINOR = '0.0'
+                MAJORMINOR = '0.0'
             }
             steps {
                 sh 'docker --context=buildserver image build -t ${MSR_FQDN_PORT}/engineering/api-build:rc-${MAJORMINOR}.${BUILD_ID} api'
@@ -21,10 +21,10 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always{
-	        sh 'rm -rf ${WORKSPACE}/*'
+                sh 'rm -rf ${WORKSPACE}/*'
         }
     }
 }
