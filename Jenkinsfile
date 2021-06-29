@@ -1,9 +1,9 @@
-pipeline {    
+pipeline {
 
-    agent any    
-    
+    agent any
+
     environment {
-        MSR_FQDN_PORT='<registry dynamic DNS>:4443'
+        MSR_FQDN_PORT='t84uicfzzodmqahaw-q9e6s2pksfazvat3j.labs.strigo.io:4443'
     }
 
     stages {
@@ -22,10 +22,10 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always{
             sh 'rm -rf ${WORKSPACE}/*'
         }
     }
-}
+}>
